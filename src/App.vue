@@ -1,26 +1,33 @@
-<template>
+// 동적인 UI 만드는 법
+// 1. UI의 현재 상태를 데이터로 저장해둠
+// 2. 데이터에 따라 UI가 어떻게 보일지 작성
 
-  <div class="menu">
-    <!-- v-for="작명 in 몇회" -->
-    <!-- :key=""의 용도 => 반복문 쓸 때 꼭 써야함. 반복문 돌린 요소를 컴퓨터가 구분하기 위해 씀  -->
-    <!-- <a v-for="작명 in menu" :key="작명">{{작명}}</a> -->
-    <!-- Vue 반복문은 2개까지 가능. 왼쪽 변수는 array 내의 데이터, 오른쪽 변수는 1씩 증가하는 정수  -->
-    <a v-for="(a,i) in menu" :key="i">{{a}}</a>
+<template>
+  <div class="black-bg" v-if="모달창열렸니 == true">
+    <div class="white-bg">
+      <h4>상세페이지임</h4> 
+      <p>상세페이지 내용임</p> 
+      <button @click="모달창열렸니 = false">닫기</button>
+    </div>
   </div>
 
+  <div class="menu">
+    <a v-for="a in menu" :key="a">{{a}}</a>
+  </div>
 
-  <img alt="Vue logo" src="./assets/logo.png">
-
-  <div>
-    <h4 class="red" :style="스타일">{{products[0]}}</h4>
+  <div> 
+    <img src="./assets/room0.jpg" class="room-img">
+    <h4 @click="모달창열렸니 = true">{{products[0]}}</h4>
     <p>{{ price1 }}만원 </p>
     <button @click="increase">허위매물신고</button> <span>신고수 : {{신고수}}</span>
   </div>
   <div>
+     <img src="./assets/room1.jpg" class="room-img">
     <h4 class="red" :style="스타일">{{products[1]}}</h4>
     <p>{{ price2 }}만원 </p>
   </div>
    <div>
+     <img src="./assets/room2.jpg" class="room-img">
     <h4 class="red" :style="스타일">{{products[2]}}</h4>
     <p>{{ price3 }}만원 </p>
   </div>
@@ -33,7 +40,8 @@ export default {
   name: 'App',
   data(){
     return{
-      신고수 : 0,
+      모달창열렸니 : false,
+      신고수 : [0,0,0],
       price1 : 50,
       price2 : 60,
       price3 : 70,
@@ -54,6 +62,23 @@ export default {
 </script>
 
 <style>
+body {
+  margin : 0
+}
+div {
+  box-sizing: border-box;
+}
+.black-bg {
+  width: 100%; height: 100%;
+  background : rgba(0,0,0,0.5);
+  position: fixed; padding:20px;
+}
+.white-bg {
+  width:100%; background: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -73,4 +98,9 @@ export default {
   padding: 10px;
 }
 
+.room-img {
+  width: 30%;
+  margin-top: 40px;
+}
 </style>
+ 
