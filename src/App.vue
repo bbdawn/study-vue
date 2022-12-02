@@ -1,45 +1,51 @@
-// 동적인 UI 만드는 법
-// 1. UI의 현재 상태를 데이터로 저장해둠
-// 2. 데이터에 따라 UI가 어떻게 보일지 작성
+// HTML 태그 안의 속성 데이터바인딩은 :블라블라
+// HTML 태그 안의 내용 데이터바인딩은 {{블라블라}}
+// v-for, v-if, v-else-if
 
 <template>
+
+  <div v-if="1==2">
+    안녕하세요
+  </div>
+  <div v-else-if="1==3">
+    안녕하세요222
+  </div>
+  <div v-else>
+    안녕하세요333
+  </div>
+
   <div class="black-bg" v-if="모달창열렸니 == true">
     <div class="white-bg">
-      <h4>상세페이지임</h4> 
-      <p>상세페이지 내용임</p> 
+      <h4>{{원룸들[누른거].title}}</h4> 
+       <img :src="원룸들[누른거].image" >
+      <p>{{원룸들[누른거].content}}</p> 
+      <p>{{원룸들[누른거].price}}원</p>
       <button @click="모달창열렸니 = false">닫기</button>
     </div>
   </div>
 
   <div class="menu">
     <a v-for="a in menu" :key="a">{{a}}</a>
-  </div>
+  </div> 
 
-  <div> 
-    <img src="./assets/room0.jpg" class="room-img">
-    <h4 @click="모달창열렸니 = true">{{products[0]}}</h4>
-    <p>{{ price1 }}만원 </p>
-    <button @click="increase">허위매물신고</button> <span>신고수 : {{신고수}}</span>
-  </div>
-  <div>
-     <img src="./assets/room1.jpg" class="room-img">
-    <h4 class="red" :style="스타일">{{products[1]}}</h4>
-    <p>{{ price2 }}만원 </p>
-  </div>
-   <div>
-     <img src="./assets/room2.jpg" class="room-img">
-    <h4 class="red" :style="스타일">{{products[2]}}</h4>
-    <p>{{ price3 }}만원 </p>
+  <div v-for="(a,i) in 원룸들" :key="i"> 
+    <img :src="a.image" class="room-img">
+    <h4 @click="모달창열렸니 = true; 누른거 = i">{{a.title}}</h4>
+    <p>{{a.price}}원 </p>
   </div>
 
 </template>
 
 <script>
 
+import data from './assets/oneroom.js';
+
 export default {
   name: 'App',
   data(){
     return{
+      누른거 : 0,
+      원룸들 : data,
       모달창열렸니 : false,
       신고수 : [0,0,0],
       price1 : 50,
