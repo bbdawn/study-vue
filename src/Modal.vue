@@ -27,6 +27,15 @@ export default {
         month : 1,
       }
     },
+    watch : {
+      month(a){
+        //watch -> month라는 데이터가 변경될 떄 마다 아래의 코드가 실행됨 
+         if(isNaN(a)==true){
+          alert('숫자만 입력하세요');
+          this.month = 1;
+         }
+      }
+    },
     props: {
         원룸들 : Array,
         누른거 : Number,
