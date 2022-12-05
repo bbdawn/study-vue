@@ -37,6 +37,9 @@
 
   <Discount v-bind="오브젝트" />
   <!-- <Discount :이름="오브젝트.name" :나이="오브젝트.age"/> -->
+  <button @click="priceSort">가격순정렬</button>
+  <br>
+
 
   
   <Card @openModal="모달창열렸니 = true; 누른거 = $event"  :원룸="원룸들[i]" v-for="(작명,i) in 원룸들" :key="작명"/>
@@ -73,7 +76,16 @@ export default {
   methods : {
     increase(){ 
         this.신고수 += 1;
-    }
+    },
+    priceSort(){
+      // var array = [3,5,2];
+      // array.sort();
+      // console.log(array);
+
+      this.원룸들.sort(function(a,b){
+        return a.price - b.price
+      })   
+    },
   },
   components: {
     Discount,
