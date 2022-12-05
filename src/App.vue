@@ -38,6 +38,7 @@
   <Discount v-bind="오브젝트" />
   <!-- <Discount :이름="오브젝트.name" :나이="오브젝트.age"/> -->
   <button @click="priceSort">가격순정렬</button>
+  <button @click="sortBack">되돌리기</button>
   <br>
 
 
@@ -60,6 +61,7 @@ export default {
   name: 'App',
   data(){
     return{
+      원룸들오리지널 : [...data],
       오브젝트 : { name : 'kim', age : 20 },
       누른거 : 0,
       원룸들 : data,
@@ -76,6 +78,9 @@ export default {
   methods : {
     increase(){ 
         this.신고수 += 1;
+    },
+    sortBack(){
+      this.원룸들 = this.원룸들오리지널 
     },
     priceSort(){
       // var array = [3,5,2];
