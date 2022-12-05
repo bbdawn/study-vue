@@ -40,6 +40,12 @@ export default {
         원룸들 : Array,
         누른거 : Number,
         모달창열렸니 : Boolean,
+    },
+    updated(){
+      if(this.month>6){
+        alert("최대 6개월까지 가능합니다");
+        this.month = 6
+      }
     }
 }
 </script>

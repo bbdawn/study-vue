@@ -116,6 +116,7 @@ export default {
     },1000)
   },
 
+  
   components: {
     Discount,
     Modal,
