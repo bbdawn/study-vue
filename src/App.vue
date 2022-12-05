@@ -17,10 +17,18 @@
 
 
   <!-- 방법1. class명을 조건부로 넣으려면 {클래스명:조건} 모달창열렸니가 true일때만 end를 부착  -->
-  <div class="start" :class="{end : 모달창열렸니 }"> 
+  <!-- <div class="start" :class="{end : 모달창열렸니 }"> 
   <Modal @closeModal="모달창열렸니=false" 
     :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니"/>
-  </div>
+  </div> -->
+
+  <!-- 방법2. transition -->
+  <Transition name="fade"> 
+    <Modal @closeModal="모달창열렸니=false" 
+    :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니"/>
+  </Transition>
+
+
 
 
   <div class="menu">
@@ -131,6 +139,20 @@ div {
   transition: all 1s;
 }
 .end {
+  opacity: 1;
+}
+
+
+.fade-enter-from{ 
+  /* 시작 때 스타일 */
+  opacity: 0;
+}
+.fade-enter-active{
+  /* transition */
+  transition: all 1s;
+}
+.fade-enter-to{
+  /* 끝날 때 스타일 */
   opacity: 1;
 }
 
