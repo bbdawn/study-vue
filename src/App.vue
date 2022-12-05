@@ -14,7 +14,14 @@
     안녕하세요333
   </div>
 
-  <Modal @closeModal="모달창열렸니=false" :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니"/>
+
+
+  <!-- 방법1. class명을 조건부로 넣으려면 {클래스명:조건} 모달창열렸니가 true일때만 end를 부착  -->
+  <div class="start" :class="{end : 모달창열렸니 }"> 
+  <Modal @closeModal="모달창열렸니=false" 
+    :원룸들="원룸들" :누른거="누른거" :모달창열렸니="모달창열렸니"/>
+  </div>
+
 
   <div class="menu">
     <a v-for="a in menu" :key="a">{{a}}</a>
@@ -23,12 +30,7 @@
   <Discount v-bind="오브젝트" />
   <!-- <Discount :이름="오브젝트.name" :나이="오브젝트.age"/> -->
 
-  <!-- <Card :원룸="원룸들[0]"/>
-  <Card :원룸="원룸들[1]"/>
-  <Card :원룸="원룸들[2]"/>
-  <Card :원룸="원룸들[3]"/>
-  <Card :원룸="원룸들[4]"/>
-  <Card :원룸="원룸들[5]"/> -->
+  
   <Card @openModal="모달창열렸니 = true; 누른거 = $event"  :원룸="원룸들[i]" v-for="(작명,i) in 원룸들" :key="작명"/>
   
 
@@ -122,5 +124,16 @@ div {
   margin: 10px;
   border-radius: 5px;
 }
+
+
+.start {
+  opacity: 0;
+  transition: all 1s;
+}
+.end {
+  opacity: 1;
+}
+
+
 </style>
  
