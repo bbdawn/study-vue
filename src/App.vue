@@ -34,7 +34,7 @@
     <a v-for="a in menu" :key="a">{{a}}</a>
   </div> 
 
-  <Discount v-bind="오브젝트" />
+  <Discount v-bind="오브젝트" v-if="showDiscount == true"/>
   <!-- <Discount :이름="오브젝트.name" :나이="오브젝트.age"/> -->
   <button @click="priceDesc">낮은가격순</button>
   <button @click="priceAsc">높은가격순</button>
@@ -57,10 +57,13 @@ import Discount from './Discount.vue';
 import Modal from './Modal.vue';
 import Card from './Card.vue';
 
+
+
 export default {
   name: 'App',
   data(){
     return{
+      showDiscount : true,
       원룸들오리지널 : [...data],
       오브젝트 : { name : 'kim', age : 20 },
       누른거 : 0,
@@ -97,6 +100,13 @@ export default {
       })
     }
   },
+
+  mounted(){
+    setTimeout(()=>{
+      this.showDiscount = false
+    },2000);  
+  },
+
   components: {
     Discount,
     Modal,
