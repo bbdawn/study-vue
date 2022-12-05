@@ -142,7 +142,7 @@ div {
   opacity: 1;
 }
 
-
+/* 입장 */
 .fade-enter-from{ 
   /* 시작 때 스타일 */
   opacity: 0;
@@ -154,6 +154,20 @@ div {
 .fade-enter-to{
   /* 끝날 때 스타일 */
   opacity: 1;
+}
+
+/* 퇴장 */
+.fade-leave-from{ 
+  /* 시작 때 스타일 */
+  opacity: 1;
+}
+.fade-leave-active{
+  /* transition */
+  transition: all 1s;
+}
+.fade-leave-to{
+  /* 끝날 때 스타일 */
+  opacity: 0;
 }
 
 
