@@ -34,7 +34,7 @@
     <a v-for="a in menu" :key="a">{{a}}</a>
   </div> 
 
-  <Discount v-bind="오브젝트" v-if="showDiscount == true"/>
+  <Discount v-bind="오브젝트" v-if="showDiscount == true" :할인율="할인율"/>
   <!-- <Discount :이름="오브젝트.name" :나이="오브젝트.age"/> -->
   <button @click="priceDesc">낮은가격순</button>
   <button @click="priceAsc">높은가격순</button>
@@ -63,6 +63,7 @@ export default {
   name: 'App',
   data(){
     return{
+      할인율 : 20,
       showDiscount : true,
       원룸들오리지널 : [...data],
       오브젝트 : { name : 'kim', age : 20 },
@@ -102,9 +103,17 @@ export default {
   },
 
   mounted(){
-    setTimeout(()=>{
-      this.showDiscount = false
-    },2000);  
+    // 랜더링 2초 뒤에 Discount컴포넌트 사라지게
+    // setTimeout(()=>{
+    //   this.showDiscount = false
+    // },2000);  
+
+    setInterval(()=>{
+      if(this.할인율 > 15){
+        this.할인율 = this.할인율-1;
+      }
+      
+    },1000)
   },
 
   components: {
