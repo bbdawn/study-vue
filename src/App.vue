@@ -15,7 +15,6 @@
   </div>
 
 
-
   <!-- 방법1. class명을 조건부로 넣으려면 {클래스명:조건} 모달창열렸니가 true일때만 end를 부착  -->
   <!-- <div class="start" :class="{end : 모달창열렸니 }"> 
   <Modal @closeModal="모달창열렸니=false" 
@@ -37,10 +36,11 @@
 
   <Discount v-bind="오브젝트" />
   <!-- <Discount :이름="오브젝트.name" :나이="오브젝트.age"/> -->
-  <button @click="priceSort">가격순정렬</button>
+  <button @click="priceDesc">낮은가격순</button>
+  <button @click="priceAsc">높은가격순</button>
   <button @click="sortBack">되돌리기</button>
   <br>
-
+  
 
   
   <Card @openModal="모달창열렸니 = true; 누른거 = $event"  :원룸="원룸들[i]" v-for="(작명,i) in 원룸들" :key="작명"/>
@@ -80,9 +80,9 @@ export default {
         this.신고수 += 1;
     },
     sortBack(){
-      this.원룸들 = this.원룸들오리지널 
+      this.원룸들 = [...this.원룸들오리지널]; 
     },
-    priceSort(){
+    priceDesc(){
       // var array = [3,5,2];
       // array.sort();
       // console.log(array);
@@ -91,6 +91,11 @@ export default {
         return a.price - b.price
       })   
     },
+    priceAsc(){
+      this.원룸들.sort(function(a,b){
+        return b.price - a.price
+      })
+    }
   },
   components: {
     Discount,
